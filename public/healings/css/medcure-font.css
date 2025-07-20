@@ -1,0 +1,214 @@
+@font-face {
+  font-family: 'medcure';
+  src:  url('../fonts/medcure7c37.eot?suaeij');
+  src:  url('../fonts/medcure7c37.eot?suaeij#iefix') format('embedded-opentype'),
+    url('../fonts/medcure7c37.ttf?suaeij') format('truetype'),
+    url('../fonts/medcure7c37.woff?suaeij') format('woff'),
+    url('../fonts/medcure7c37.svg?suaeij#medcure') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'medcure' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dr3:before {
+  content: "\e900";
+}
+.icon-dr4:before {
+  content: "\e901";
+}
+.icon-dr5:before {
+  content: "\e902";
+}
+.icon-dr6:before {
+  content: "\e903";
+}
+.icon-left-icon:before {
+  content: "\e904";
+}
+.icon-list-icn:before {
+  content: "\e905";
+}
+.icon-list-menu:before {
+  content: "\e906";
+}
+.icon-map-icon:before {
+  content: "\e907";
+}
+.icon-menu2:before {
+  content: "\e908";
+}
+.icon-up-icon:before {
+  content: "\e909";
+}
+.icon-uniE90B .path1:before {
+  content: "\e90b";
+  color: rgb(81, 110, 149);
+  opacity: 0.5;
+}
+.icon-uniE90B .path2:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path3:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path4:before {
+  content: "\e90e";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path5:before {
+  content: "\e90f";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path6:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path7:before {
+  content: "\e911";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path8:before {
+  content: "\e912";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE90B .path9:before {
+  content: "\e915";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-arrow-right:before {
+  content: "\e913";
+}
+.icon-bell-icon:before {
+  content: "\e914";
+}
+.icon-uniE917 .path1:before {
+  content: "\e917";
+  color: rgb(81, 110, 149);
+  opacity: 0.5;
+}
+.icon-uniE917 .path2:before {
+  content: "\e92a";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE917 .path3:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE917 .path4:before {
+  content: "\e92c";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-home-icon .path1:before {
+  content: "\e919";
+  color: rgb(255, 255, 255);
+  opacity: 0.1;
+}
+.icon-home-icon .path2:before {
+  content: "\e92d";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-home-icon .path3:before {
+  content: "\e92e";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-men-doctor:before {
+  content: "\e91a";
+}
+.icon-menu-icon:before {
+  content: "\e91b";
+}
+.icon-Path-12467:before {
+  content: "\e91c";
+}
+.icon-Path-12468:before {
+  content: "\e91d";
+}
+.icon-remove-icon:before {
+  content: "\e91e";
+}
+.icon-search-icon:before {
+  content: "\e91f";
+}
+.icon-sms-icon .path1:before {
+  content: "\e920";
+  color: rgb(81, 110, 149);
+  opacity: 0.5;
+}
+.icon-sms-icon .path2:before {
+  content: "\e92f";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-sms-icon .path3:before {
+  content: "\e930";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-uniE921:before {
+  content: "\e921";
+}
+.icon-uniE922:before {
+  content: "\e922";
+}
+.icon-uniE924:before {
+  content: "\e924";
+}
+.icon-cardiology:before {
+  content: "\e927";
+}
+.icon-gastrology:before {
+  content: "\e928";
+}
+.icon-neurology:before {
+  content: "\e929";
+}
+.icon-user-profile .path1:before {
+  content: "\e916";
+  color: rgb(81, 110, 149);
+  opacity: 0.5;
+}
+.icon-user-profile .path2:before {
+  content: "\e931";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-user-profile .path3:before {
+  content: "\e932";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}
+.icon-user-profile .path4:before {
+  content: "\e933";
+  margin-left: -1em;
+  color: rgb(81, 110, 149);
+}

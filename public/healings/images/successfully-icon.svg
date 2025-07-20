@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="281" height="281" viewBox="0 0 281 281">
+  <defs>
+    <filter id="circle" x="0" y="0" width="281" height="281" filterUnits="userSpaceOnUse">
+      <feOffset dy="29" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="13" result="blur"/>
+      <feFlood flood-color="#1d3a62"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="circle-2" x="13" y="13" width="255" height="255" filterUnits="userSpaceOnUse">
+      <feOffset dy="29" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="13" result="blur-2"/>
+      <feFlood flood-color="#1d3a62"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="circle-3" x="24" y="24" width="233" height="233" filterUnits="userSpaceOnUse">
+      <feOffset dy="29" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="13" result="blur-3"/>
+      <feFlood flood-color="#1d3a62"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_6079" data-name="Group 6079" transform="translate(-47 -140)">
+    <g transform="matrix(1, 0, 0, 1, 47, 140)" filter="url(#circle)">
+      <g id="circle-4" data-name="circle" transform="translate(39 10)" fill="#fff" stroke="#fff" stroke-width="10" opacity="0.1">
+        <circle cx="101.5" cy="101.5" r="101.5" stroke="none"/>
+        <circle cx="101.5" cy="101.5" r="96.5" fill="none"/>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 47, 140)" filter="url(#circle-2)">
+      <g id="circle-5" data-name="circle" transform="translate(52 23)" fill="#fff" stroke="#fff" stroke-width="10" opacity="0.09">
+        <circle cx="88.5" cy="88.5" r="88.5" stroke="none"/>
+        <circle cx="88.5" cy="88.5" r="83.5" fill="none"/>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 47, 140)" filter="url(#circle-3)">
+      <g id="circle-6" data-name="circle" transform="translate(63 34)" fill="#fff" stroke="#fff" stroke-width="10" opacity="0.09">
+        <circle cx="77.5" cy="77.5" r="77.5" stroke="none"/>
+        <circle cx="77.5" cy="77.5" r="72.5" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
