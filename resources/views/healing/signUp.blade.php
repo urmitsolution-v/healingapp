@@ -120,7 +120,7 @@ $(document).ready(function () {
                     });
                 } else if (response.status == 200) {
                     // alert(response.message);
-                    window.location.href = "{{ url('/declearation') }}";
+                    window.location.href = "{{ url('/payment-submit') }}";
                 }
             },
             error: function () {

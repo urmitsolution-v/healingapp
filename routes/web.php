@@ -20,6 +20,8 @@ Route::get('/sign-in', [Commoncontroller::class, 'signIn'])->name('healing.signI
 Route::post('/login', [Commoncontroller::class, 'login'])->name('user.login.submit');
 Route::get('/sign-up', [Commoncontroller::class, 'signUp'])->name('healing.signUp');
 Route::get('/declearation', [Commoncontroller::class, 'declearation'])->name('healing.declearation');
+Route::get('/payment-submit', [Commoncontroller::class, 'payment_submit'])->name('healing.payment.submit');
+Route::post('/submit-payment', [Commoncontroller::class, 'payment_submit'])->name('healing.payment.submit');
 Route::post('/register-user', [Commoncontroller::class, 'register_store']);
 Route::post('/final-submit', [Commoncontroller::class, 'finalSubmit'])->name('user.final.submit');
 

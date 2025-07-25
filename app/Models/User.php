@@ -41,6 +41,12 @@ class User extends Authenticatable
         'declearation',
         'status',
         'user_code',
+        'payment_date',
+        'payment_time',
+        'certificate',
+        'screenshot',
+        'utr_no',
+        'amount',
     ];
 
     /**

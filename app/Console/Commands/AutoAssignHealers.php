@@ -4,63 +4,70 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\HealingRequest;
-use App\Models\User; // assuming healer is user
+use App\Models\User;
 use Carbon\Carbon;
+use App\Models\HealingBid;
+use App\Models\MonthlyWallet;
 
 class AutoAssignHealers extends Command
 {
     protected $signature = 'healing:auto-assign';
-    protected $description = 'Auto assign healers 30 minutes before healing time to requests with bids';
+    protected $description = 'Automatically assigns a healer before 30 mins of healing time';
 
-    public function handle()
-    {
-        $now = Carbon::now();
+public function handle(): void
+{
+    $this->line('🛠️ Auto-assign command started...');
 
-        $requests = HealingRequest::whereNull('assigned_healer_id')
-            ->where('status', 'pending')
-            ->whereDate('date', $now->toDateString())
-            ->get()
-            ->filter(function ($request) use ($now) {
-                $scheduled = Carbon::parse($request->date . ' ' . $request->time);
-                return $now->diffInMinutes($scheduled, false) === 30;
-            });
+    $isTesting = false;
 
-        foreach ($requests as $request) {
-            $bids = $request->bids;
+    $targetTime = $isTesting ? now() : now()->copy()->addMinutes(30);
 
-            if ($bids->isEmpty()) {
-                $this->info("No bids for request ID: {$request->id}");
-                continue;
-            }
+    $requests = HealingRequest::where('status', 'pending')
+        ->whereDate('date', $targetTime->toDateString())
+        ->whereTime('time', $targetTime->format('H:i'))
+        ->get();
+        
+    if ($requests->isEmpty()) {
+        $this->line('📭 No pending healing requests found for auto-assign.');
+        return;
+    }
 
-            $healerIds = $bids->pluck('healer_id')->unique();
+    foreach ($requests as $request) {
+        $bids = HealingBid::where('healing_request_id', $request->id)->get();
 
-            $healerData = $healerIds->mapWithKeys(function ($healerId) {
-                $wallet = User::find($healerId)?->wallet_balance ?? 0;
-                $assignedCount = HealingRequest::where('assigned_healer_id', $healerId)->count();
-
-                return [$healerId => [
-                    'wallet_balance' => $wallet,
-                    'assigned_count' => $assignedCount
-                ]];
-            });
-
-            // Sort: lowest wallet, then least assignments
-            $sorted = $healerData->sort(function ($a, $b) {
-                return $a['wallet_balance'] <=> $b['wallet_balance']
-                    ?: $a['assigned_count'] <=> $b['assigned_count'];
-            });
-
-            $selectedHealerId = $sorted->keys()->first();
-
-            // Save assignment
-            $request->assigned_healer_id = $selectedHealerId;
-            $request->status = 'assigned';
-            $request->save();
-
-            $this->info("Assigned healer ID {$selectedHealerId} to request ID {$request->id}");
+        if ($bids->isEmpty()) {
+            $this->line("⚠️ No bids found for request ID {$request->id}");
+            continue;
         }
 
-        $this->info('✅ Auto-assignment job complete at ' . now());
+        $healerId = $bids->pluck('healer_id')->unique()->mapWithKeys(function ($healerId) {
+            $wallet = MonthlyWallet::firstOrCreate([
+                'user_id' => $healerId,
+                'month' => now()->month,
+                'year' => now()->year,
+            ], [
+                'credit' => 0,
+                'debit' => 0,
+                'balance' => 0,
+            ]);
+            return [$healerId => $wallet->balance];
+        })->sort()->keys()->first();
+
+        $request->assigned_healer_id = $healerId;
+        $request->status = 'assigned';
+        $request->save();
+
+        $wallet = MonthlyWallet::firstOrCreate([
+            'user_id' => $healerId,
+            'month' => now()->month,
+            'year' => now()->year,
+        ]);
+        $wallet->increment('credit');
+        $wallet->update([
+            'balance' => $wallet->credit - $wallet->debit,
+        ]);
+
+        $this->line("✅ Assigned healer ID {$healerId} to request ID {$request->id}");
     }
+}
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
+
 class Commoncontroller extends Controller
 {
   public function index()
@@ -104,6 +105,59 @@ class Commoncontroller extends Controller
     ]);
 
     return response()->json(['success' => true]);
+}
+
+
+public  function payment_submit(Request $request)
+{
+    if (Auth::check()) {
+
+        if($request->isMethod('post')) {
+           
+             $validator = Validator::make($request->all(), [
+        'screenshop' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'utr_no' => 'required|string|max:255',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['status' => 400, 'errors' => $validator->errors()]);
+    }
+
+    $user = Auth::user();
+
+    // Handle file uploads
+    $screenshotName = null;
+    $certificateName = null;
+
+    if ($request->hasFile('screenshop')) {
+        $screenshotName = time() . '_screenshot.' . $request->screenshop->extension();
+        $request->screenshop->move(public_path('uploads/screenshots'), $screenshotName);
+    }
+
+    if ($request->hasFile('certificate')) {
+        $certificateName = time() . '_certificate.' . $request->certificate->extension();
+        $request->certificate->move(public_path('uploads/certificates'), $certificateName);
+    }
+
+    // Save to user
+    $user->amount = $request->input('amount', 999); // default amount
+    $user->utr_no = $request->utr_no;
+    $user->screenshot = $screenshotName;
+    $user->certificate = $certificateName;
+    $user->payment_time = now()->format('H:i:s');
+    $user->payment_date = now()->format('Y-m-d');
+    $user->save();
+
+    return response()->json(['status' => 200, 'message' => 'Payment info submitted']);
+
+            return response()->json(['success' => true, 'message' => 'Payment processed successfully.']);
+        }
+
+        return view('healing.payment_submit');
+    } else {
+        return redirect()->route('healing.signIn');
+    }
 }
 
 public function signIn(Request $request)
